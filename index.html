@@ -11,15 +11,19 @@
     
     <style>
         :root {
-            --bg-color: #0b0c16;
-            --panel-bg: rgba(18, 20, 38, 0.7);
-            --border-color: rgba(255, 255, 255, 0.08);
-            --primary: #3b82f6; /* Biru cerah */
-            --accent: #10b981; /* Hijau sukses */
-            --warning: #f59e0b; /* Kuning/orange */
-            --text-main: #f3f4f6;
-            --text-muted: #9ca3af;
+            --bg-color: #0a0e27;
+            --panel-bg: rgba(15, 23, 42, 0.8);
+            --border-color: rgba(255, 255, 255, 0.1);
+            --primary: #3b82f6;
+            --primary-light: #60a5fa;
+            --accent: #10b981;
+            --accent-light: #34d399;
+            --warning: #f59e0b;
+            --text-main: #f1f5f9;
+            --text-muted: #cbd5e1;
             --gradient-1: linear-gradient(135deg, #1e1b4b 0%, #0f172a 100%);
+            --gradient-primary: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            --gradient-accent: linear-gradient(135deg, #10b981 0%, #059669 100%);
             --glow-color: rgba(59, 130, 246, 0.35);
         }
 
@@ -48,24 +52,31 @@
             border-radius: 50%;
             filter: blur(120px);
             z-index: 1;
-            opacity: 0.4;
+            opacity: 0.5;
             pointer-events: none;
         }
 
         .blob-1 {
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(59, 130, 246, 0.4) 0%, rgba(0,0,0,0) 70%);
-            top: -100px;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.5) 0%, rgba(0,0,0,0) 70%);
+            top: -150px;
             left: -100px;
+            animation: float 6s ease-in-out infinite;
         }
 
         .blob-2 {
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(16, 185, 129, 0.35) 0%, rgba(0,0,0,0) 70%);
-            bottom: -150px;
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, rgba(16, 185, 129, 0.4) 0%, rgba(0,0,0,0) 70%);
+            bottom: -200px;
             right: -100px;
+            animation: float 8s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(30px); }
         }
 
         /* Presentation Container */
@@ -87,6 +98,7 @@
             align-items: center;
             border-bottom: 1px solid var(--border-color);
             padding-bottom: 1.2rem;
+            backdrop-filter: blur(10px);
         }
 
         .logo-section {
@@ -96,30 +108,33 @@
         }
 
         .logo-icon {
-            font-size: 1.8rem;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
+            font-size: 2rem;
+            background: var(--gradient-primary);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            font-weight: 800;
+            filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.4));
         }
 
         .logo-text {
             font-family: 'Outfit', sans-serif;
-            font-weight: 700;
-            font-size: 1.1rem;
-            letter-spacing: 0.05em;
-            color: var(--text-main);
+            font-weight: 800;
+            font-size: 1.2rem;
+            letter-spacing: 0.1em;
+            background: linear-gradient(135deg, #ffffff 0%, #93c5fd 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .subject-badge {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--border-color);
-            padding: 0.4rem 0.8rem;
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid var(--primary);
+            padding: 0.5rem 1rem;
             border-radius: 9999px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            color: var(--text-muted);
-            letter-spacing: 0.05em;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--primary-light);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
         }
 
         /* Slides Area */
@@ -135,12 +150,12 @@
         .slide {
             position: absolute;
             width: 100%;
-            max-width: 1100px;
+            max-width: 1200px;
             height: 100%;
             opacity: 0;
-            transform: scale(0.96) translateY(10px);
+            transform: scale(0.95) translateY(20px);
             pointer-events: none;
-            transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+            transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -158,16 +173,16 @@
         .slide-card {
             background: var(--panel-bg);
             border: 1px solid var(--border-color);
-            border-radius: 24px;
-            padding: 3rem;
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3), 
-                        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            border-radius: 28px;
+            padding: 3.5rem;
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4), 
+                        inset 0 1px 0 rgba(255, 255, 255, 0.12);
             display: grid;
             grid-template-columns: 1fr;
-            gap: 2rem;
-            min-height: 520px;
+            gap: 2.5rem;
+            min-height: 540px;
             overflow-y: auto;
         }
 
@@ -176,37 +191,48 @@
         }
 
         @keyframes borderGlow {
-            0% { border-color: rgba(255, 255, 255, 0.08); }
-            100% { border-color: rgba(59, 130, 246, 0.25); }
+            0% { 
+                border-color: rgba(255, 255, 255, 0.1);
+                box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4), 
+                            inset 0 1px 0 rgba(255, 255, 255, 0.12);
+            }
+            100% { 
+                border-color: rgba(59, 130, 246, 0.3);
+                box-shadow: 0 25px 50px rgba(59, 130, 246, 0.15), 
+                            inset 0 1px 0 rgba(59, 130, 246, 0.1);
+            }
         }
 
         .slide-title-area {
             display: flex;
             flex-direction: column;
-            gap: 0.5rem;
+            gap: 0.8rem;
         }
 
         .slide-tag {
-            color: var(--primary);
-            font-size: 0.85rem;
-            font-weight: 700;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 0.8rem;
+            font-weight: 800;
             text-transform: uppercase;
             letter-spacing: 0.15em;
         }
 
         .slide-title {
             font-family: 'Outfit', sans-serif;
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             font-weight: 800;
             letter-spacing: -0.02em;
-            background: linear-gradient(to right, #ffffff, #d1d5db);
+            background: linear-gradient(to right, #ffffff 0%, #e0e7ff 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            line-height: 1.2;
         }
 
         .slide-content {
-            font-size: 1.05rem;
-            line-height: 1.6;
+            font-size: 1.1rem;
+            line-height: 1.7;
             color: var(--text-main);
         }
 
@@ -214,44 +240,64 @@
         .grid-2col {
             display: grid;
             grid-template-columns: 1.1fr 0.9fr;
-            gap: 2.5rem;
+            gap: 3rem;
             align-items: center;
         }
 
         .grid-cards {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
         }
 
         .feature-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 16px;
-            padding: 1.5rem;
-            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 18px;
+            padding: 2rem;
+            transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--gradient-primary);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
         }
 
         .feature-card:hover {
-            background: rgba(255, 255, 255, 0.06);
-            border-color: rgba(59, 130, 246, 0.3);
-            transform: translateY(-4px);
+            background: rgba(59, 130, 246, 0.08);
+            border-color: rgba(59, 130, 246, 0.25);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.15);
+        }
+
+        .feature-card:hover::before {
+            transform: scaleX(1);
         }
 
         .feature-card h4 {
             font-family: 'Outfit', sans-serif;
-            font-size: 1.2rem;
+            font-size: 1.25rem;
             color: #ffffff;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.8rem;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.7rem;
         }
 
         .feature-card p {
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             color: var(--text-muted);
-            line-height: 1.5;
+            line-height: 1.6;
         }
 
         /* Slide 1 - Cover Custom Layout */
@@ -261,59 +307,87 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            gap: 1.5rem;
+            gap: 2rem;
             height: 100%;
         }
 
         .cover-layout h1 {
             font-family: 'Outfit', sans-serif;
-            font-size: 3.5rem;
+            font-size: 4rem;
             font-weight: 800;
             line-height: 1.1;
             letter-spacing: -0.03em;
-            background: linear-gradient(135deg, #ffffff 40%, #93c5fd 100%);
+            background: linear-gradient(135deg, #ffffff 20%, #93c5fd 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin-bottom: 0.5rem;
         }
 
         .cover-layout p.subtitle {
-            font-size: 1.4rem;
-            color: var(--primary);
+            font-size: 1.5rem;
+            color: var(--primary-light);
             font-weight: 600;
             letter-spacing: 0.05em;
-            margin-bottom: 2rem;
+            margin-bottom: 1rem;
         }
 
         /* Members List Cover */
         .members-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 1.2rem;
+            gap: 1.5rem;
             width: 100%;
-            max-width: 900px;
+            max-width: 1000px;
         }
 
         .member-card {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 12px;
-            padding: 0.8rem;
+            background: rgba(59, 130, 246, 0.06);
+            border: 1px solid rgba(59, 130, 246, 0.15);
+            border-radius: 14px;
+            padding: 1.2rem;
             text-align: center;
-            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .member-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, transparent, rgba(59, 130, 246, 0.1));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .member-card:hover {
+            background: rgba(59, 130, 246, 0.12);
+            border-color: rgba(59, 130, 246, 0.3);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(59, 130, 246, 0.1);
+        }
+
+        .member-card:hover::before {
+            opacity: 1;
         }
 
         .member-card .m-name {
             font-weight: 700;
             color: #ffffff;
             font-size: 0.95rem;
+            position: relative;
+            z-index: 1;
         }
 
         .member-card .m-nim {
             color: var(--text-muted);
             font-size: 0.8rem;
-            margin-top: 0.2rem;
+            margin-top: 0.35rem;
             font-family: monospace;
+            font-weight: 500;
+            position: relative;
+            z-index: 1;
         }
 
         /* Bullet Points Styling */
@@ -323,119 +397,137 @@
 
         ul.custom-bullets li {
             position: relative;
-            padding-left: 2rem;
-            margin-bottom: 0.8rem;
+            padding-left: 2.2rem;
+            margin-bottom: 1rem;
         }
 
         ul.custom-bullets li::before {
-            content: "✦";
+            content: "▸";
             position: absolute;
             left: 0;
             top: 0;
             color: var(--primary);
             font-weight: bold;
+            font-size: 1.3em;
         }
 
         /* Flow list for Step Tracker */
         .flow-container {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 1rem;
+            gap: 1.5rem;
         }
 
         .flow-step {
-            background: rgba(59, 130, 246, 0.05);
+            background: rgba(59, 130, 246, 0.06);
             border: 1px solid rgba(59, 130, 246, 0.15);
-            border-radius: 12px;
-            padding: 1rem;
+            border-radius: 14px;
+            padding: 1.5rem;
             display: flex;
             align-items: flex-start;
-            gap: 0.75rem;
+            gap: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .flow-step:hover {
+            background: rgba(59, 130, 246, 0.1);
+            border-color: rgba(59, 130, 246, 0.3);
+            transform: translateY(-4px);
         }
 
         .flow-step .num {
-            background: var(--primary);
+            background: var(--gradient-primary);
             color: #ffffff;
             font-family: 'Outfit', sans-serif;
             font-weight: bold;
-            width: 26px;
-            height: 26px;
+            width: 36px;
+            height: 36px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             flex-shrink: 0;
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.3);
         }
 
         .flow-step .text {
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             font-weight: 600;
-            line-height: 1.4;
+            line-height: 1.5;
+            color: var(--text-main);
         }
 
         .flow-step .text span {
             display: block;
-            font-size: 0.75rem;
+            font-size: 0.8rem;
             color: var(--text-muted);
             font-weight: 400;
-            margin-top: 0.15rem;
+            margin-top: 0.25rem;
         }
 
         /* Footer Controls */
         footer {
             border-top: 1px solid var(--border-color);
-            padding-top: 1.2rem;
+            padding-top: 1.5rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            backdrop-filter: blur(10px);
         }
 
         .progress-indicator {
             display: flex;
-            gap: 0.4rem;
+            gap: 0.6rem;
         }
 
         .progress-dot {
-            width: 10px;
-            height: 10px;
+            width: 11px;
+            height: 11px;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.15);
             cursor: pointer;
             transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .progress-dot:hover {
+            background: rgba(255, 255, 255, 0.25);
         }
 
         .progress-dot.active {
-            background: var(--primary);
-            width: 32px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px var(--primary);
+            background: var(--gradient-primary);
+            width: 36px;
+            border-radius: 6px;
+            box-shadow: 0 0 15px var(--primary);
+            border: 1px solid rgba(59, 130, 246, 0.5);
         }
 
         .controls-buttons {
             display: flex;
-            gap: 0.75rem;
+            gap: 1rem;
         }
 
         .control-btn {
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid var(--border-color);
             color: var(--text-main);
-            padding: 0.6rem 1.2rem;
-            border-radius: 10px;
+            padding: 0.7rem 1.5rem;
+            border-radius: 12px;
             cursor: pointer;
-            font-weight: 600;
+            font-weight: 700;
             font-size: 0.85rem;
-            transition: all 0.2s ease;
+            transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.6rem;
+            letter-spacing: 0.05em;
         }
 
         .control-btn:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: rgba(255, 255, 255, 0.2);
-            transform: translateY(-1px);
+            background: rgba(255, 255, 255, 0.12);
+            border-color: rgba(255, 255, 255, 0.25);
+            transform: translateY(-2px);
         }
 
         .control-btn:active {
@@ -443,42 +535,57 @@
         }
 
         .control-btn.primary-btn {
-            background: var(--primary);
+            background: var(--gradient-primary);
             border-color: transparent;
-            box-shadow: 0 0 15px rgba(59, 130, 246, 0.4);
+            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4);
+            color: #ffffff;
         }
 
         .control-btn.primary-btn:hover {
-            background: #2563eb;
-            box-shadow: 0 0 20px rgba(59, 130, 246, 0.6);
+            box-shadow: 0 12px 30px rgba(59, 130, 246, 0.6);
+            transform: translateY(-3px);
         }
 
         /* Keyboard tips banner */
         .kbd-tip {
             display: inline-flex;
             align-items: center;
-            gap: 0.3rem;
-            background: rgba(255, 255, 255, 0.05);
-            padding: 0.25rem 0.5rem;
-            border-radius: 6px;
+            gap: 0.4rem;
+            background: rgba(59, 130, 246, 0.1);
+            padding: 0.35rem 0.7rem;
+            border-radius: 8px;
             font-size: 0.75rem;
             color: var(--text-muted);
-            border: 1px solid var(--border-color);
+            border: 1px solid rgba(59, 130, 246, 0.2);
         }
 
         .kbd-key {
-            background: rgba(255, 255, 255, 0.15);
+            background: rgba(59, 130, 246, 0.2);
             color: #ffffff;
-            padding: 0.1rem 0.35rem;
-            border-radius: 4px;
+            padding: 0.15rem 0.4rem;
+            border-radius: 5px;
             font-family: monospace;
             font-weight: bold;
+            font-size: 0.8em;
         }
 
         /* Highlight Text */
-        .hl-blue { color: var(--primary); font-weight: 600; }
-        .hl-green { color: var(--accent); font-weight: 600; }
-        .hl-gold { color: var(--warning); font-weight: 600; }
+        .hl-blue { 
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+        }
+        .hl-green { 
+            background: linear-gradient(135deg, #10b981, #059669);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+        }
+        .hl-gold { 
+            color: var(--warning);
+            font-weight: 700;
+        }
 
         /* Print Layout Styles (For PDF Generation) */
         @media print {
@@ -573,7 +680,7 @@
                 <span>atau</span>
                 <span class="kbd-key">Space</span>
             </div>
-            <span class="subject-badge">PRESENTASI UAS GAME DEVELOPMENT</span>
+            <span class="subject-badge">PRESENTASI UAS</span>
         </header>
 
         <!-- Slides Area -->
@@ -626,21 +733,21 @@
                     </div>
                     <div class="grid-2col">
                         <div>
-                            <p style="font-size: 1.2rem; line-height: 1.7; margin-bottom: 1.5rem;">
+                            <p style="font-size: 1.15rem; line-height: 1.8; margin-bottom: 1.5rem; color: var(--text-main);">
                                 Pelatihan kasir ritel baru di supermarket atau kafe sering kali membutuhkan pendampingan langsung yang memakan waktu dan berisiko salah hitung transaksi riil.
                             </p>
-                            <p style="color: var(--text-muted);">
+                            <p style="color: var(--text-muted); font-size: 1rem; line-height: 1.7;">
                                 Kami mengembangkan solusi berupa media simulator 3D interaktif yang aman untuk melatih alur kerja kasir ritel tanpa risiko kerugian finansial.
                             </p>
                         </div>
-                        <div class="grid-cards" style="grid-template-columns: 1fr;">
-                            <div class="feature-card" style="border-left: 4px solid var(--warning);">
-                                <h4>⚠️ Risiko Kesalahan Finansial</h4>
-                                <p>Kesalahan kasir baru saat menghitung uang kembalian secara langsung dapat merugikan kasir secara pribadi atau keuangan toko.</p>
+                        <div class="grid-cards" style="grid-template-columns: 1fr; gap: 1.5rem;">
+                            <div class="feature-card" style="border-top: 3px solid var(--warning);">
+                                <h4>⚠️ Risiko Kesalahan</h4>
+                                <p>Kesalahan kasir baru saat menghitung uang kembalian dapat merugikan kasir atau keuangan toko.</p>
                             </div>
-                            <div class="feature-card" style="border-left: 4px solid var(--primary);">
-                                <h4>💡 Solusi Simulator Edukatif</h4>
-                                <p>Menyediakan sandbox latihan interaktif yang mensimulasikan mesin kasir (POS), scanner, antrean pelanggan, dan dapur produk.</p>
+                            <div class="feature-card" style="border-top: 3px solid var(--accent);">
+                                <h4>💡 Solusi Inovatif</h4>
+                                <p>Sandbox latihan interaktif dengan simulasi mesin kasir, scanner, antrean, dan dapur produk.</p>
                             </div>
                         </div>
                     </div>
@@ -655,8 +762,8 @@
                         <h2 class="slide-title">Core Gameplay & 9 Langkah Alur Kasir</h2>
                     </div>
                     <div class="slide-content">
-                        <p style="margin-bottom: 1.5rem; color: var(--text-muted);">
-                            Pemain berperan sebagai kasir dengan sudut pandang orang pertama (First-Person). Setiap pelanggan menuntut penyelesaian 9 langkah tugas prosedural berikut:
+                        <p style="margin-bottom: 2rem; color: var(--text-muted);">
+                            Pemain berperan sebagai kasir dengan sudut pandang orang pertama. Setiap pelanggan menuntut penyelesaian 9 langkah tugas prosedural berikut:
                         </p>
                         <div class="flow-container">
                             <div class="flow-step">
@@ -665,11 +772,11 @@
                             </div>
                             <div class="flow-step">
                                 <div class="num">2</div>
-                                <div class="text">Buat Pesanan di Bar<span>Ke area bar pembuat minuman/roti</span></div>
+                                <div class="text">Buat Pesanan di Bar<span>Ke area bar pembuat minuman</span></div>
                             </div>
                             <div class="flow-step">
                                 <div class="num">3</div>
-                                <div class="text">Letakkan di Kasir<span>Pindahkan produk fisik ke meja kasir</span></div>
+                                <div class="text">Letakkan di Kasir<span>Pindahkan produk ke meja kasir</span></div>
                             </div>
                             <div class="flow-step">
                                 <div class="num">4</div>
@@ -677,19 +784,19 @@
                             </div>
                             <div class="flow-step">
                                 <div class="num">5</div>
-                                <div class="text">Konfirmasi Total<span>Verifikasi kelengkapan pesanan POS</span></div>
+                                <div class="text">Konfirmasi Total<span>Verifikasi kelengkapan pesanan</span></div>
                             </div>
                             <div class="flow-step">
                                 <div class="num">6</div>
-                                <div class="text">Pembayaran / Kembalian<span>Ketik kembalian manual dengan tepat</span></div>
+                                <div class="text">Pembayaran Kembalian<span>Ketik kembalian dengan tepat</span></div>
                             </div>
                             <div class="flow-step">
                                 <div class="num">7</div>
-                                <div class="text">Cetak Struk<span>Cetak bukti transaksi lewat mesin POS</span></div>
+                                <div class="text">Cetak Struk<span>Cetak bukti transaksi POS</span></div>
                             </div>
                             <div class="flow-step">
                                 <div class="num">8</div>
-                                <div class="text">Pindahkan ke Pickup<span>Bawa belanjaan ke area pickup</span></div>
+                                <div class="text">Ke Area Pickup<span>Bawa belanjaan ke pickup area</span></div>
                             </div>
                             <div class="flow-step">
                                 <div class="num">9</div>
@@ -705,24 +812,24 @@
                 <div class="slide-card">
                     <div class="slide-title-area">
                         <span class="slide-tag">03. AI CUSTOMER</span>
-                        <h2 class="slide-title">Kecerdasan Buatan Pelanggan (Customer AI)</h2>
+                        <h2 class="slide-title">Kecerdasan Buatan Pelanggan</h2>
                     </div>
                     <div class="grid-2col">
                         <div>
-                            <ul class="custom-bullets" style="font-size: 1.1rem; line-height: 1.8;">
-                                <li><strong>Manajemen Antrean:</strong> Pelanggan dipicu secara berurutan oleh <span class="hl-blue">CustomerManager.cs</span>, berjalan menuju meja kasir menggunakan lintasan waypoint dinamis.</li>
-                                <li><strong>Sistem Pesanan Dinamis:</strong> Setiap NPC memiliki daftar belanjaan unik (`desiredItems`) yang di-generate saat spawn.</li>
-                                <li><strong>Patience Timer (Batas Kesabaran):</strong> Pelanggan memiliki batas waktu tunggu. Semakin lama melayani, tingkat kesabaran berkurang.</li>
+                            <ul class="custom-bullets" style="font-size: 1rem; line-height: 1.9;">
+                                <li><strong>Manajemen Antrean:</strong> Pelanggan dipicu berurutan oleh <span class="hl-blue">CustomerManager.cs</span>.</li>
+                                <li><strong>Pesanan Dinamis:</strong> Setiap NPC memiliki daftar belanjaan unik yang di-generate saat spawn.</li>
+                                <li><strong>Patience Timer:</strong> Pelanggan memiliki batas waktu tunggu yang berkurang seiring layanan.</li>
                             </ul>
                         </div>
                         <div class="grid-cards" style="grid-template-columns: 1fr;">
-                            <div class="feature-card" style="border-left: 4px solid var(--accent);">
-                                <h4>😊 Ekspresi Bahagia (Happy State)</h4>
-                                <p>Aktif saat kasir sukses menyelesaikan pembayaran dan memberikan uang kembalian dengan nominal akurat. Pelanggan tersenyum dan berjalan menuju Pickup Area.</p>
+                            <div class="feature-card" style="border-top: 3px solid var(--accent);">
+                                <h4>😊 Happy State</h4>
+                                <p>Pelanggan senang saat kasir berhasil memberi uang kembalian akurat. Tersenyum dan menuju area pickup.</p>
                             </div>
-                            <div class="feature-card" style="border-left: 4px solid #ef4444;">
-                                <h4>😠 Ekspresi Komplain (Complain State)</h4>
-                                <p>Muncul balon komplain di atas kepala NPC apabila kasir men-scan barang yang tidak mereka pesan (Wrong Scan Prevention).</p>
+                            <div class="feature-card" style="border-top: 3px solid #ef4444;">
+                                <h4>😠 Complain State</h4>
+                                <p>Muncul balon komplain saat kasir men-scan barang yang tidak dipesan (Wrong Scan Prevention).</p>
                             </div>
                         </div>
                     </div>
@@ -738,22 +845,16 @@
                     </div>
                     <div class="grid-cards">
                         <div class="feature-card">
-                            <h4 style="font-size: 1.3rem;">🧤 Physics Grab & Drop (`PlayerGrab.cs`)</h4>
-                            <p style="font-size: 0.95rem; margin-top: 0.5rem; line-height: 1.6;">
-                                Simulator ini mengimplementasikan manipulasi objek 3D fisik. Pemain dapat memegang, membawa, dan menata barang belanjaan secara manual ke atas meja kasir dan memindahkannya kembali ke meja pickup menggunakan koordinat kamera.
-                            </p>
+                            <h4>🧤 Physics Grab & Drop</h4>
+                            <p>Manipulasi objek 3D fisik. Pemain dapat memegang, membawa, dan menata barang belanjaan secara manual ke atas meja kasir dengan fisika realistis.</p>
                         </div>
                         <div class="feature-card">
-                            <h4 style="font-size: 1.3rem;">🎯 Raycast Interaction (`RaycastInteractor.cs`)</h4>
-                            <p style="font-size: 0.95rem; margin-top: 0.5rem; line-height: 1.6;">
-                                Fitur deteksi target tatapan menggunakan metode Raycasting. Memungkinkan interaksi yang intuitif terhadap tombol UI kasir POS, Service Bell, mesin dispenser kopi, dan NPC pelanggan dengan umpan balik prompt HUD dinamis.
-                            </p>
+                            <h4>🎯 Raycast Interaction</h4>
+                            <p>Deteksi target tatapan menggunakan Raycasting. Memungkinkan interaksi intuitif terhadap tombol UI kasir, Service Bell, dan dispenser.</p>
                         </div>
                         <div class="feature-card">
-                            <h4 style="font-size: 1.3rem;">🚪 Sliding Doors & Triggers (`SlidingDoor.cs`)</h4>
-                            <p style="font-size: 0.95rem; margin-top: 0.5rem; line-height: 1.6;">
-                                Pintu geser otomatis terbuka menggunakan trigger zone saat player atau pelanggan mendekatinya, menambahkan kesan realistis pada rancangan desain supermarket/kafe.
-                            </p>
+                            <h4>🚪 Sliding Doors</h4>
+                            <p>Pintu geser otomatis terbuka menggunakan trigger zone, menambahkan kesan realistis pada desain supermarket/kafe.</p>
                         </div>
                     </div>
                 </div>
@@ -768,20 +869,20 @@
                     </div>
                     <div class="grid-2col">
                         <div>
-                            <ul class="custom-bullets" style="font-size: 1.1rem; line-height: 1.8;">
-                                <li><strong>Sensor Scan Kasir (`ScanZone.cs`):</strong> Pemindaian otomatis menggunakan Trigger Collider. Barang yang disentuhkan ke scanner akan terdeteksi layaknya sensor barcode nyata.</li>
-                                <li><strong>Wrong Scan Prevention:</strong> Validasi silang otomatis antara item yang sedang di-scan dengan daftar pesanan aktif milik pembeli.</li>
+                            <ul class="custom-bullets" style="font-size: 1rem; line-height: 1.9;">
+                                <li><strong>Sensor Scan Kasir:</strong> Pemindaian otomatis menggunakan Trigger Collider dengan deteksi real-time.</li>
+                                <li><strong>Wrong Scan Prevention:</strong> Validasi silang otomatis antara item yang di-scan dengan daftar pesanan pembeli.</li>
                                 <li><strong>Mesin Cetak Struk:</strong> Cetak struk fisik di monitor POS setelah pembayaran sukses diverifikasi.</li>
                             </ul>
                         </div>
-                        <div class="feature-card" style="border: 1px dashed var(--primary); display: flex; flex-direction: column; justify-content: center; padding: 2rem;">
-                            <h4 style="color: var(--warning);">🧮 Pembayaran & Hitung Kembalian</h4>
-                            <p style="font-size: 1rem; line-height: 1.6; margin-top: 0.5rem; color: var(--text-main);">
-                                Kasir dilatih ketelitian matematikanya. Ketika pelanggan membayar dengan nominal bulat (misal total $35 dibayar $50), kasir wajib **mengetik manual angka kembalian** ($15) melalui keyboard. 
+                        <div class="feature-card" style="border: 2px solid var(--primary); display: flex; flex-direction: column; justify-content: center;">
+                            <h4 style="color: var(--primary);">🧮 Pembayaran & Kembalian</h4>
+                            <p style="font-size: 0.95rem; line-height: 1.7; color: var(--text-main);">
+                                Kasir dilatih ketelitian matematikanya. Ketika pelanggan membayar dengan nominal bulat, kasir harus **mengetik manual** angka kembalian yang benar.
                                 <br><br>
-                                <span class="hl-green">✔ Sistem akan memproses jika nominal tepat</span>
+                                <span class="hl-green">✔ Sistem proses jika nominal tepat</span>
                                 <br>
-                                <span class="hl-gold">✖ Sistem akan error jika nominal salah</span>
+                                <span style="color: var(--warning);">✖ Sistem error jika nominal salah</span>
                             </p>
                         </div>
                     </div>
@@ -796,20 +897,18 @@
                         <h2 class="slide-title">Quest Tracker & Audio Feedback</h2>
                     </div>
                     <div class="grid-2col">
-                        <div class="feature-card" style="padding: 2rem; display: flex; flex-direction: column; justify-content: center;">
-                            <h4 style="color: var(--primary);">📋 Dinamis Quest Tracker (`QuestTracker.cs`)</h4>
-                            <p style="font-size: 0.95rem; line-height: 1.6; margin-top: 0.5rem; color: var(--text-muted);">
-                                Menyajikan daftar tugas 9 langkah secara dinamis di sudut kiri atas layar. Menggunakan visual progress bar yang bergerak mulus, ikon status interaktif (centang hijau saat tugas selesai), dan penyorotan menyala pada instruksi yang sedang dikerjakan.
-                            </p>
+                        <div class="feature-card">
+                            <h4 style="color: var(--primary);">📋 Quest Tracker Dinamis</h4>
+                            <p>Menyajikan daftar tugas 9 langkah secara dinamis di sudut kiri atas layar dengan progress bar mulus dan ikon status interaktif.</p>
                         </div>
                         <div class="grid-cards" style="grid-template-columns: 1fr;">
                             <div class="feature-card">
-                                <h4>🔊 Audio Feedback System</h4>
-                                <p style="font-size: 0.85rem; line-height: 1.5; margin-top: 0.25rem;">
-                                    • <strong>Beep Sound:</strong> Efek suara saat men-scan item.<br>
-                                    • <strong>Success Chime:</strong> Suara notifikasi keberhasilan pembayaran.<br>
-                                    • <strong>Error Buzzer:</strong> Peringatan suara jika salah scan barang/hitung kembalian.<br>
-                                    • <strong>Printing & Bell:</strong> Suara printer mencetak struk dan dentangan lonceng pelayanan di pickup area.
+                                <h4>🔊 Audio Feedback</h4>
+                                <p>
+                                    • <strong>Beep Sound:</strong> Saat men-scan item<br>
+                                    • <strong>Success Chime:</strong> Pembayaran sukses<br>
+                                    • <strong>Error Buzzer:</strong> Salah scan/kembalian<br>
+                                    • <strong>Bell & Printer:</strong> Area pickup
                                 </p>
                             </div>
                         </div>
@@ -819,16 +918,16 @@
 
             <!-- Slide 8: Video Demonstrasi & Alur Gameplay -->
             <div class="slide">
-                <div class="slide-card" style="text-align: center; justify-content: center; gap: 1.5rem;">
+                <div class="slide-card" style="text-align: center; justify-content: center;">
                     <div class="slide-title-area">
                         <span class="slide-tag">07. DEMO VIDEO</span>
-                        <h2 class="slide-title">Video Gameplay & Demonstrasi Sistem</h2>
+                        <h2 class="slide-title">Video Gameplay & Demonstrasi</h2>
                     </div>
-                    <div style="max-width: 600px; margin: 0 auto; padding: 2rem; background: rgba(255, 255, 255, 0.02); border: 1px dashed var(--border-color); border-radius: 16px;">
-                        <span style="font-size: 4rem;">🎥</span>
-                        <h3 style="margin: 1rem 0 0.5rem 0; font-family: 'Outfit'; font-size: 1.4rem;">Demo Simulasi Penuh (3 Pelanggan)</h3>
-                        <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6;">
-                            Kami mendokumentasikan keseluruhan alur simulasi pelatihan kasir dari penyambutan pelanggan pertama, perakitan pesanan kopi di dapur dispenser, scanner meja, proses input uang kembalian matematika, hingga penyerahan barang di area pickup dan membunyikan bell untuk mengakhiri pelatihan (Training Complete).
+                    <div style="max-width: 700px; margin: 0 auto; padding: 2.5rem; background: rgba(59, 130, 246, 0.08); border: 2px dashed var(--primary); border-radius: 20px;">
+                        <span style="font-size: 5rem;">🎥</span>
+                        <h3 style="margin: 1.5rem 0 0.75rem 0; font-family: 'Outfit'; font-size: 1.5rem; color: #ffffff;">Demo Simulasi Penuh</h3>
+                        <p style="color: var(--text-muted); font-size: 1rem; line-height: 1.8;">
+                            Dokumentasi lengkap alur simulasi pelatihan kasir dari penyambutan pelanggan pertama, perakitan pesanan di dapur, scanner meja, hingga proses pembayaran dan pickup area.
                         </p>
                     </div>
                 </div>
@@ -843,17 +942,17 @@
                     </div>
                     <div class="grid-2col">
                         <div>
-                            <h3 style="font-family: 'Outfit', sans-serif; font-size: 1.3rem; margin-bottom: 0.8rem; color: #ffffff;">Hasil Pengembangan</h3>
-                            <p style="font-size: 0.95rem; line-height: 1.6; color: var(--text-muted); margin-bottom: 1.5rem;">
-                                Proyek Simulator Pelatihan Kasir 3D ini telah berhasil diimplementasikan dengan stabil di mesin Unity. Fitur navigasi alur tugas kasir yang dipandu oleh HUD Quest Tracker terbukti mempermudah pemahaman langkah-langkah kasir retail secara terperinci.
+                            <h3 style="font-family: 'Outfit', sans-serif; font-size: 1.4rem; margin-bottom: 1rem; color: #ffffff;">Hasil Pengembangan</h3>
+                            <p style="font-size: 0.95rem; line-height: 1.8; color: var(--text-muted); margin-bottom: 1.5rem;">
+                                Proyek Simulator Pelatihan Kasir 3D telah berhasil diimplementasikan dengan stabil di mesin Unity. Fitur navigasi alur tugas kasir dipandu oleh HUD Quest Tracker yang responsif.
                             </p>
                         </div>
                         <div>
-                            <h3 style="font-family: 'Outfit', sans-serif; font-size: 1.3rem; margin-bottom: 0.8rem; color: var(--primary);">Rencana Masa Depan</h3>
-                            <ul class="custom-bullets" style="font-size: 0.9rem; line-height: 1.6;">
-                                <li><strong>Mode Time Attack:</strong> Pembatasan durasi transaksi agar melatih ketangkasan & kecepatan pelayanan kasir ritel.</li>
-                                <li><strong>Metode Pembayaran Baru:</strong> Menambah opsi interaksi mesin EDC kartu debit dan scan QRIS.</li>
-                                <li><strong>Sistem Penilaian Bintang:</strong> Pemberian rating/score performa kepuasan pembeli NPC.</li>
+                            <h3 style="font-family: 'Outfit', sans-serif; font-size: 1.4rem; margin-bottom: 1rem; color: var(--primary);">Rencana Masa Depan</h3>
+                            <ul class="custom-bullets" style="font-size: 0.95rem; line-height: 1.8;">
+                                <li><strong>Mode Time Attack:</strong> Pembatasan durasi untuk melatih kecepatan pelayanan.</li>
+                                <li><strong>Payment Methods:</strong> Tambah opsi EDC kartu debit & scan QRIS.</li>
+                                <li><strong>Rating System:</strong> Pemberian star rating performa kepuasan NPC.</li>
                             </ul>
                         </div>
                     </div>
@@ -870,12 +969,12 @@
             
             <div class="controls-buttons">
                 <button class="control-btn" id="prevBtn">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
                     Kembali
                 </button>
                 <button class="control-btn primary-btn" id="nextBtn">
                     Lanjut
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
                 </button>
             </div>
         </footer>
@@ -923,9 +1022,9 @@
             // Disable/Enable buttons
             prevBtn.style.visibility = index === 0 ? 'hidden' : 'visible';
             if (index === totalSlides - 1) {
-                nextBtn.innerHTML = 'Mulai Lagi <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>';
+                nextBtn.innerHTML = 'Mulai Lagi <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38"/></svg>';
             } else {
-                nextBtn.innerHTML = 'Lanjut <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>';
+                nextBtn.innerHTML = 'Lanjut <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>';
             }
         }
 
